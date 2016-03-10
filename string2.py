@@ -56,7 +56,7 @@ def is_even(s):
 
     return False
 
-def return_halves(s):
+def string_halves(s):
 
     mid_length = len(s) / 2
     mid_index = int(mid_length)
@@ -71,8 +71,8 @@ def return_halves(s):
 
 def front_back(a, b):
 
-    a_halves = return_halves(a)
-    b_halves = return_halves(b)
+    a_halves = string_halves(a)
+    b_halves = string_halves(b)
 
     return a_halves[0] + b_halves[0] + a_halves[1] + b_halves[1]
 
