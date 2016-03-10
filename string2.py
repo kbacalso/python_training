@@ -61,10 +61,10 @@ def return_halves(s):
     mid_length = len(s) / 2
     mid_index = int(mid_length)
 
-    first_half = s[:mid_index]
     if is_even(s) == False:
-        first_half = s[:mid_index + 1]
+        mid_index += 1
 
+    first_half = s[:mid_index]
     second_half = s[len(first_half):]
 
     return (first_half, second_half)
