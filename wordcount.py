@@ -30,6 +30,54 @@ print_words() and print_top().
 
 import sys
 
+
+def get_words(filename):
+    file_handle = open(filename, 'r')
+
+    words = file_handle.readlines()
+    words = ' '.join(words)
+    words = words.lower()
+    words = words.split()
+
+    file_handle.close()
+
+    return words
+
+
+def word_count(words):
+    word_dictionary = {}
+
+    for word in words:
+        if word not in list(word_dictionary.keys()):
+            word_dictionary[word] = 1
+        else:
+            word_dictionary[word] += 1
+
+    return word_dictionary
+
+
+def get_word_dictionary(filename):
+    words = get_words(filename)
+    return word_count(words)
+    
+
+def display_words(words, word_dict):
+    for word in words:
+        print('{} {}'.format(word, word_dict[word]))
+
+
+def print_words(filename):
+    word_dict = get_word_dictionary(filename)
+    words = sorted(list(word_dict.keys()))
+    display_words(words, word_dict)
+
+
+def print_top(filename):
+    word_dict = get_word_dictionary(filename)
+    words = sorted(word_dict, key=word_dict.get, reverse=True)
+    display_words(words, word_dict)
+
+
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
