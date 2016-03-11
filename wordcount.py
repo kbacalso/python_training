@@ -33,12 +33,7 @@ import sys
 
 def get_words(filename):
     file_handle = open(filename, 'r')
-
-    words = file_handle.readlines()
-    words = ' '.join(words)
-    words = words.lower()
-    words = words.split()
-
+    words = file_handle.read().lower().split()
     file_handle.close()
 
     return words
@@ -59,23 +54,22 @@ def word_count(words):
 def get_word_dictionary(filename):
     words = get_words(filename)
     return word_count(words)
-    
-
-def display_words(words, word_dict):
-    for word in words:
-        print('{} {}'.format(word, word_dict[word]))
 
 
 def print_words(filename):
     word_dict = get_word_dictionary(filename)
     words = sorted(list(word_dict.keys()))
-    display_words(words, word_dict)
+
+    for word in words:
+        print('{} {}'.format(word, word_dict[word]))
 
 
 def print_top(filename):
     word_dict = get_word_dictionary(filename)
     words = sorted(word_dict, key=word_dict.get, reverse=True)
-    display_words(words, word_dict)
+
+    for word in words[:20]:
+        print('{} {}'.format(word, word_dict[word]))
 
 
 # +++your code here+++
